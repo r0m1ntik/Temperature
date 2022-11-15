@@ -1,8 +1,5 @@
 package fr.univpau.temperature;
 
-import android.content.Context;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 
 public class Temperature {
@@ -44,7 +41,8 @@ public class Temperature {
         mSpinnerCible = spinnerCible;
     }
 
-    public final void convertToFrom() {
+    public final void convertToFrom()
+    {
         switch (getSpinnerSource()) {
             case "Celcius": this.CelciusTempTo(); break;
             case "Kelvin": this.KelvinTempTo(); break;
@@ -56,7 +54,8 @@ public class Temperature {
         }
     }
 
-    public final void KelvinTempTo() {
+    public final void KelvinTempTo()
+    {
         switch (getSpinnerCible()) {
             case "Celcius": break;
             case "Kelvin": this.setValeurCible(getValeurSource()); break;
@@ -67,7 +66,9 @@ public class Temperature {
                 throw new IllegalStateException("Unexpected value");
         }
     }
-    public final void FahrenheitTempTo() {
+
+    public final void FahrenheitTempTo()
+    {
         switch (getSpinnerCible()) {
             case "Celcius": break;
             case "Kelvin": break;
@@ -78,7 +79,8 @@ public class Temperature {
                 throw new IllegalStateException("Unexpected value");
         }
     }
-    public final void RankineTempTo() {
+    public final void RankineTempTo()
+    {
         switch (getSpinnerCible()) {
             case "Celcius": break;
             case "Kelvin": break;
@@ -89,19 +91,22 @@ public class Temperature {
                 throw new IllegalStateException("Unexpected value");
         }
     }
-    public final void ReaumurTempTo() {
+
+    public final void ReaumurTempTo()
+    {
         switch (getSpinnerCible()) {
-            case "Celcius": break;
-            case "Kelvin": break;
-            case "Fahrenheit": break;
-            case "Rankine":  break;
+            case "Celcius": this.setValeurCible(getValeurSource() * 1.25f); break;
+            case "Kelvin": this.setValeurCible(1.25f * getValeurSource() + 273.15f); break;
+            case "Fahrenheit": this.setValeurCible(getValeurSource() * 9/4 + 32f); break;
+            case "Rankine":  this.setValeurCible(getValeurSource() * 9/4 + 491.67f); break;
             case "Reaumur": this.setValeurCible(getValeurSource()); break;
             default:
                 throw new IllegalStateException("Unexpected value");
         }
     }
 
-    public final void CelciusTempTo() {
+    public final void CelciusTempTo()
+    {
         switch (getSpinnerCible()) {
             case "Celcius": this.setValeurCible(getValeurSource()); break;
             case "Kelvin": this.setValeurCible(getValeurSource() + 273.15f); break;
@@ -113,15 +118,16 @@ public class Temperature {
         }
     }
 
-    public Temperature(float ValeurSource, @NonNull String spinnerSource, @NonNull String spinnerCible) {
-
+    public Temperature(float ValeurSource, @NonNull String spinnerSource, @NonNull String spinnerCible)
+    {
         this.setValeurSource(ValeurSource);
         this.setSpinnerCible(spinnerCible);
         this.setSpinnerSource(spinnerSource);
         this.convertToFrom();
     }
 
-    public static boolean isFloat(String number){
+    public static boolean isFloat(String number)
+    {
         try {
             return !Float.valueOf(number).isNaN();
         } catch (NumberFormatException e){

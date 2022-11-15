@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Convertisseur</string>
+    <string name="selectionner_unite_source">Sélectionner une unité source</string>
+    <string name="selectionner_unite_cible">Sélectionner une unité cible</string>
+    <string name="entrez_valeur">Entrez la valeur</string>
+    <string name="resultat">Le resultat sera ici</string>
+    <string name="convertir">Convertir</string>
+    <string name="todo">TODO</string>
+    <string name="tododo">TODO</string>
+
+    <string-array name="liste_item">
+        <item>Celcius</item>
+        <item>Kelvin</item>
+        <item>Fahrenheit</item>
+        <item>Rankine</item>
+        <item>Reaumur</item>
+    </string-array>
+
+</resources>

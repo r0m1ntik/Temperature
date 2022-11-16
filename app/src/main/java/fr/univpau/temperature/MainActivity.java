@@ -20,34 +20,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Spinner mSpinner_source;
     private Spinner mSpinner_cible;
 
-    private Temperature mTemperature;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        valeur_source = (EditText) findViewById(R.id.valeur_source);
-        valeur_cible = (EditText) findViewById(R.id.valeur_cible);
+        valeur_source = findViewById(R.id.valeur_source);
+        valeur_cible = findViewById(R.id.valeur_cible);
         mSpinner_source = findViewById(R.id.spinner_source);
         mSpinner_cible = findViewById(R.id.spinner_cible);
-        Button convertbtn = (Button) findViewById(R.id.convertir);
-
-        mSpinner_cible.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // your code here
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
-
-        });
+        Button convertbtn = findViewById(R.id.convertir);
 
         convertbtn.setEnabled(false);
         convertbtn.setOnClickListener(this);
+
+        valeur_source.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // This is where we'll check the user input
+                convertbtn.setEnabled(!s.toString().isEmpty());
+            }
+        });
     }
 
     @Override
@@ -91,11 +94,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     "Le champ doit contenir des entiers",
                     Toast.LENGTH_SHORT).show();
         } else {
-            mTemperature = new Temperature(Float.parseFloat(valeur_source.getText().toString()),
+            Temperature temperature = new Temperature(Float.parseFloat(valeur_source.getText().toString()),
                     mSpinner_source.getSelectedItem().toString(),
                     mSpinner_cible.getSelectedItem().toString());
 
-            valeur_cible.setText(String.valueOf(mTemperature.getValeurCible()));
+            valeur_cible.setText(String.valueOf(temperature.getValeurCible()));
         }
     }
 }

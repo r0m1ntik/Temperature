@@ -57,11 +57,11 @@ public class Temperature {
     public final void KelvinTempTo()
     {
         switch (getSpinnerCible()) {
-            case "Celcius": break;
+            case "Celcius": this.setValeurCible(getValeurSource() - 273.15f); break;
             case "Kelvin": this.setValeurCible(getValeurSource()); break;
-            case "Fahrenheit": break;
-            case "Rankine": break;
-            case "Reaumur": break;
+            case "Fahrenheit": this.setValeurCible((getValeurSource() - 273.15f) * 9/5 + 32f); break;
+            case "Rankine": this.setValeurCible(getValeurSource() / 1.8f); break;
+            case "Reaumur": this.setValeurCible((getValeurSource() * 1.25f) + 273.15f); break;
             default:
                 throw new IllegalStateException("Unexpected value");
         }
@@ -70,11 +70,11 @@ public class Temperature {
     public final void FahrenheitTempTo()
     {
         switch (getSpinnerCible()) {
-            case "Celcius": break;
-            case "Kelvin": break;
+            case "Celcius": this.setValeurCible((getValeurSource() - 32f) * 5/9f); break;
+            case "Kelvin": this.setValeurCible((getValeurSource() - 32f) * 5/9 + 273.15f); break;
             case "Fahrenheit": this.setValeurCible(getValeurSource()); break;
-            case "Rankine": break;
-            case "Reaumur": break;
+            case "Rankine": this.setValeurCible(getValeurSource() + 459.57f); break;
+            case "Reaumur": this.setValeurCible((getValeurSource() - 32f) * 0.44444f); break;
             default:
                 throw new IllegalStateException("Unexpected value");
         }
@@ -82,11 +82,11 @@ public class Temperature {
     public final void RankineTempTo()
     {
         switch (getSpinnerCible()) {
-            case "Celcius": break;
-            case "Kelvin": break;
-            case "Fahrenheit": break;
+            case "Celcius": this.setValeurCible((getValeurSource() - 491.67f) * 5/9); break;
+            case "Kelvin": this.setValeurCible(getValeurSource() * 5/9); break;
+            case "Fahrenheit": this.setValeurCible(getValeurSource() - 459.67f); break;
             case "Rankine": this.setValeurCible(getValeurSource()); break;
-            case "Reaumur": break;
+            case "Reaumur": this.setValeurCible((getValeurSource() - 491.67f) * 0.44444f); break;
             default:
                 throw new IllegalStateException("Unexpected value");
         }
